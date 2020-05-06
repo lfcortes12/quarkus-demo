@@ -2,6 +2,8 @@ package com.gbt.quarkus;
 
 import com.gbt.quarkus.repository.DeveloperRepository;
 import com.gbt.quarkus.service.DeveloperService;
+import io.quarkus.qute.Template;
+import io.quarkus.qute.TemplateInstance;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -19,34 +21,46 @@ public class DeveloperResource {
     DeveloperService developerService;
 
     @Inject
-    private
     DeveloperRepository developerRepository;
+
+    @Inject
+    Template developer;
+
+
+    @GET
+    @Path("/home")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance home() {
+        return developer.data("title", "Globant Devs").data("developers", Developer.findAll().list());
+    }
+
+
 
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public static List<Developer> getAllPerson() {
+    public List<Developer> getAllPerson() {
         return Developer.listAll();
     }
 
     @GET
     @Path("/platform/{platform}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static List<Developer> getByPlatform(@PathParam("platform") String platform) {
+    public List<Developer> getByPlatform(@PathParam("platform") String platform) {
         return Developer.getByPlatform(platform);
     }
 
     @GET
     @Path("/platform/insensitive/{platform}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static List<Developer> getByPlatformInsensitiveCase(@PathParam("platform") String platform) {
+    public List<Developer> getByPlatformInsensitiveCase(@PathParam("platform") String platform) {
         return Developer.getByPlatformNotCase(platform);
     }
 
     @GET
     @Path("/platform/search/platform/{platform}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static List<Developer> searchByPlatform(@PathParam("platform") String platform) {
+    public List<Developer> searchByPlatform(@PathParam("platform") String platform) {
         return Developer.searchByPlatform(platform);
     }
 

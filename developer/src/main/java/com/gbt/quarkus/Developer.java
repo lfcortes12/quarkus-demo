@@ -1,12 +1,14 @@
 package com.gbt.quarkus;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+@RegisterForReflection
 @Entity
 public class Developer extends PanacheEntity implements Serializable {
 
