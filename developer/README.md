@@ -70,4 +70,10 @@ curl http://localhost:8080/gbtdemo/openapi/
 
 
 In the developer ms add rest client
-./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client"
+./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client, smallrye-fault-tolerance"
+
+./mvnw quarkus:add-extension -Dextensions="quarkus-kubernetes"
+
+check images published at https://hub.docker.com/repositories
+
+

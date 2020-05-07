@@ -14,8 +14,7 @@ public class ProjectResourceTest {
         given()
           .when().get("/project")
           .then()
-             .statusCode(200)
-             .body(is("hello"));
+             .statusCode(200);
     }
 
 }
