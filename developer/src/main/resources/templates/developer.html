@@ -5,16 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Globant Devs</title>
 </head>
 <body>
 
-
 <h1>Welcome to {title}</h1>
-
+<hr />
+<h2>Developers</h2>
 {#for developer in developers}
 
-    <h2>{developer.name} - {developer.platform} - {developer.seniority.name} </h2>
+    <h3>{developer.name} - {developer.platform} - {developer.seniority.name} </h3>
+
+{/for}
+
+<hr />
+<h2>Projects</h2>
+{#for project in projects}
+
+<h3>{project.name} - {project.description}</h3>
 
 {/for}
 

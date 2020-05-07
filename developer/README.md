@@ -28,3 +28,46 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./target/demo-1.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+
+
+mkdir quarkus-demo
+
+
+cd quarkus-demo
+
+#add mvn wrapper
+mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+
+#Create a project using mvn archetype
+./mvnw io.quarkus:quarkus-maven-plugin:create
+
+#dev mode
+./mvnw quarkus:dev
+
+#to list an extension
+./mvnw quarkus:list-extensions | grep extensionname
+
+#to add an extension
+./mvnw quarkus:add-extension -Dextensions="extensionname1, extensionname2"
+
+#to package as JVM app
+./mvnw clean package
+
+#to package as native
+./mvnw clean package -Dquarkus.container-image.build=true
+
+#to check openapi
+curl http://localhost:8080/gbtdemo/openapi/
+
+
+
+./mvnw quarkus:add-extension -Dextensions="quarkus-jsonb, quarkus-resteasy-jsonb"
+./mvnw quarkus:add-extension -Dextensions="quarkus-hibernate-orm-panache, quarkus-jdbc-postgresql"
+./mvnw quarkus:add-extension -Dextensions="quarkus-smallrye-openapi"
+./mvnw quarkus:add-extension -Dextensions="quarkus-qute quarkus-resteasy-qute"
+./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client"
+./mvnw quarkus:add-extension -Dextensions="quarkus-container-image-jib"
+
+
+In the developer ms add rest client
+./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client"
