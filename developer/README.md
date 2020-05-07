@@ -63,6 +63,7 @@ curl http://localhost:8080/gbtdemo/openapi/
 
 ./mvnw quarkus:add-extension -Dextensions="quarkus-jsonb, quarkus-resteasy-jsonb"
 ./mvnw quarkus:add-extension -Dextensions="quarkus-hibernate-orm-panache, quarkus-jdbc-postgresql"
+./mvnw quarkus:add-extension -Dextensions="quarkus-jdbc-h2" 
 ./mvnw quarkus:add-extension -Dextensions="quarkus-smallrye-openapi"
 ./mvnw quarkus:add-extension -Dextensions="quarkus-qute quarkus-resteasy-qute"
 ./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client"
@@ -77,3 +78,13 @@ In the developer ms add rest client
 check images published at https://hub.docker.com/repositories
 
 
+kubectl apply -f target/kubernetes/kubernetes.json
+
+
+# enable ingress in minikube. Check if ingress is running kubectl get pods -n kube-system
+minikube addons enable ingress
+
+# Check if ingress config for developer is running
+kubectl get ingress
+
+# access the application http://192.168.1.190/gbtdemo/developer/
