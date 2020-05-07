@@ -4,6 +4,7 @@ package com.gbt.quarkus.service;
 import com.gbt.quarkus.Developer;
 import com.gbt.quarkus.Seniority;
 import io.quarkus.runtime.StartupEvent;
+import io.quarkus.runtime.configuration.ProfileManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,7 @@ public class DeveloperService {
 
     @Transactional
     public void startup(@Observes StartupEvent startupEvent) {
+        log.debug("The application is starting with profile " + ProfileManager.getActiveProfile());
         log.debug("Creating initial data");
 
         Seniority junior = new Seniority("Junior");

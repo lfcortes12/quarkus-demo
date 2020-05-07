@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -42,6 +43,9 @@ public class DeveloperResource {
 	@Inject
 	ProjectRestClient projectRestClient;
 
+	@ConfigProperty(name = "welcome.message")
+	String welcomeMessage;
+
 	@Fallback(fallbackMethod = "fallbackHome")
 	@Retry(maxRetries = 2, delay = 5000)
 	@GET
@@ -50,7 +54,7 @@ public class DeveloperResource {
 	public TemplateInstance home() {
 		log.debug("getting home");
 		final var projects = projectRestClient.getAllProjects();
-		return developer.data("title", "Glober").data("developers", Developer.findAll().list()).data("projects",
+		return developer.data("title", welcomeMessage).data("developers", Developer.findAll().list()).data("projects",
 				projects);
 	}
 
@@ -58,7 +62,7 @@ public class DeveloperResource {
 		log.debug("getting fallback home");
 		final ProjectDTO defaultProject = new ProjectDTO("Internal Project", "GBT Internal Project");
 		final var projects = List.of(defaultProject);
-		return developer.data("title", "Glober").data("developers", Developer.findAll().list()).data("projects",
+		return developer.data("title", welcomeMessage).data("developers", Developer.findAll().list()).data("projects",
 				projects);
 	}
 

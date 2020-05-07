@@ -88,3 +88,13 @@ minikube addons enable ingress
 kubectl get ingress
 
 # access the application http://192.168.1.190/gbtdemo/developer/
+
+# ConfigMaps to get configs from kubernetes
+./mvnw quarkus:add-extension -Dextensions="kubernetes-config"
+
+# Create a configmap from a file 
+
+kubectl create configmap developer-cm --from-file=src/main/resources/application-k8s.properties
+
+# to package and deploy to kubernetes automatically 
+./mvnw clean package -Dquarkus.kubernetes.deploy=true
