@@ -1,8 +1,13 @@
 package com.gbt.quarkus.client.dto;
 
+import java.util.StringJoiner;
+
 public class ProjectDTO {
 	private String name;
 	private String description;
+
+	public ProjectDTO() {
+	}
 
 	public ProjectDTO(final String name, final String description) {
 		super();
@@ -24,5 +29,13 @@ public class ProjectDTO {
 
 	public void setDescription(final String description) {
 		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return new StringJoiner(", ", ProjectDTO.class.getSimpleName() + "[", "]")
+				.add("name='" + name + "'")
+				.add("description='" + description + "'")
+				.toString();
 	}
 }

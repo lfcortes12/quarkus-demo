@@ -63,8 +63,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/arc/arc/1.4.2.Final/arc-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/eclipse/microprofile/context-propagation/microprofile-context-propagation-api/1.0.1/microprofile-context-propagation-api-1.0.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-jsonp/1.4.2.Final/quarkus-jsonp-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-jdbc-postgresql/1.4.2.Final/quarkus-jdbc-postgresql-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/postgresql/postgresql/42.2.12/postgresql-42.2.12.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-hibernate-orm-panache/1.4.2.Final/quarkus-hibernate-orm-panache-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-hibernate-orm/1.4.2.Final/quarkus-hibernate-orm-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-agroal/1.4.2.Final/quarkus-agroal-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
@@ -106,4 +104,7 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-container-image-jib/1.4.2.Final/quarkus-container-image-jib-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-kubernetes/1.4.2.Final/quarkus-kubernetes-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-kubernetes-client-internal/1.4.2.Final/quarkus-kubernetes-client-internal-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/quarkus/quarkus-jdbc-h2/1.4.2.Final/quarkus-jdbc-h2-1.4.2.Final.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/h2database/h2/1.4.197/h2-1.4.197.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
