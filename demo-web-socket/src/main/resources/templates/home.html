@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        let ws;
+        let connected;
+
+        function configWS() {
+
+            if(!connected) {
+                let clientId = document.getElementById("clientId").value;
+                ws = new WebSocket("ws://localhost:8082/demows/" + clientId);
+                ws.onopen = function() {
+                    console.log('connected!!!')
+                };
+
+                ws.onmessage = function (evt) {
+                    let messageReceivd = evt.data;
+                    console.log("Message is received..." + messageReceivd);
+                    let para = document.createElement("P");
+                    let t = document.createTextNode(messageReceivd);
+                    para.appendChild(t);
+                    document.getElementById("messages").appendChild(para);
+                };
+                connected = true;
+            } else {
+                alert('Already connected!!!')
+                console.log('Already connected!!!')
+            }
+
+        }
+
+        function send() {
+            let msg = document.getElementById("msg").value;
+            ws.send(msg);
+            console.log("message sent");
+        }
+
+        function close() {
+            ws.onclose = function() {
+                console.log("Connection is closed...");
+            };
+        }
+
+    </script>
+</head>
+<body>
+
+<div id="wsocket">
+
+    <input id="clientId" placeholder="What's your name?"/>
+    <a href="javascript:configWS()">Connect</a>
+
+    <hr />
+
+    <input id="msg" placeholder="Enter a message"/>
+    <a href="javascript:send()">Send</a>
+
+    <hr  />
+
+    <div id="messages"></div>
+
+</div>
+
+</body>
+</html>
