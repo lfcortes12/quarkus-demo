@@ -12,6 +12,13 @@ import java.util.Map;
 @Entity
 public class Developer extends PanacheEntity implements Serializable {
 
+    public String name;
+
+    public String platform;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Seniority seniority;
+
     //Entities already have an ID field
     public Developer() {
     }
@@ -21,16 +28,6 @@ public class Developer extends PanacheEntity implements Serializable {
         this.platform = platform;
         this.seniority = seniority;
     }
-
-    // Get and setters are generated and also field visibility is changed properly
-    @Column
-    public String name;
-
-    @Column
-    public String platform;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Seniority seniority;
 
     //with active record pattern the logic to access to the data should be by using static methods
     static List<Developer> getByPlatform(String platform) {

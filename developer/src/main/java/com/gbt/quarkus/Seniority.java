@@ -13,12 +13,7 @@ import java.util.Set;
 @Entity
 public class Seniority extends PanacheEntity {
 
-    @Column
     public String name;
-
-    @JsonbTransient
-    @OneToMany
-    public Set<Developer> developers;
 
     public Seniority() {
     }
