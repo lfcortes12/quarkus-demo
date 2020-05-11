@@ -1,19 +1,33 @@
 package com.gbt.quarkus;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/project")
 public class ProjectResource {
 
+    Logger log = LoggerFactory.getLogger(ProjectResource.class);
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<PanacheEntityBase> getAllProjects() {
+    public List<Project> getAllProjects() {
+        log.debug("Getting projects");
         return Project.listAll();
     }
+
+    @Transactional
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void create(final Project newProject) {
+        log.debug("Creating a project");
+        newProject.persist();
+    }
+
 }
