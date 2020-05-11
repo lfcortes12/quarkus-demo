@@ -8,6 +8,9 @@ import io.quarkus.qute.TemplateInstance;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +45,8 @@ public class DeveloperResource {
 
     //this method is retried 2 times with a delay of 2secs in case of any error
     //fallbackHome method is executed then
+    @Timed(name = "homeTimer", unit = MetricUnits.MILLISECONDS)
+    @Counted(name = "homeCounter")
     @Fallback(fallbackMethod = "fallbackHome")
     @Retry(maxRetries = 2, delay = 2000)
     @GET
@@ -68,6 +73,7 @@ public class DeveloperResource {
                         projects);
     }
 
+    @Timed(name = "getAllDeveloperTimer", unit = MetricUnits.MILLISECONDS)
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -75,6 +81,7 @@ public class DeveloperResource {
         return Response.ok(Developer.listAll()).build();
     }
 
+    @Timed(name = "getByPlatformTimer", unit = MetricUnits.MILLISECONDS)
     @GET
     @Path("/platform/{platform}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -82,6 +89,7 @@ public class DeveloperResource {
         return Developer.getByPlatform(platform);
     }
 
+    @Timed(name = "getByPlatformInsensitiveCaseTimer", unit = MetricUnits.MILLISECONDS)
     @GET
     @Path("/platform/insensitive/{platform}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -89,6 +97,7 @@ public class DeveloperResource {
         return Developer.getByPlatformNotCase(platform);
     }
 
+    @Timed(name = "searchByPlatformTimer", unit = MetricUnits.MILLISECONDS)
     @GET
     @Path("/platform/search/platform/{platform}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -96,6 +105,7 @@ public class DeveloperResource {
         return Developer.searchByPlatform(platform);
     }
 
+    @Timed(name = "searchByNameTimer", unit = MetricUnits.MILLISECONDS)
     @GET
     @Path("/platform/search/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)

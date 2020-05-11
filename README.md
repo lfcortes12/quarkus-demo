@@ -83,6 +83,14 @@ curl http://localhost:8080/gbtdemo/openapi/
 
 To access swagger <http://localhost:8080/gbtdemo/swagger-ui/>
 
+## Service metrics
+
+Using the extension *quarkus-smallrye-metrics* you will be able to create application metrics annotating the methods with `@Timed` `@Counted` or a custom metric with `@Gauge`. For the purpose of this demo, developer service has an implementation of metrics. Check this out at <http://localhost:8080/gbtdemo/metrics/application> or with curl or Postman if you want to see it as json:
+
+```bash
+ curl -H"Accept: application/json" http://localhost:8080/gbtdemo/metrics/application
+```
+
 ## Extensions used in this demo
 
 ```bash
