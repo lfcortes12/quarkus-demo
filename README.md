@@ -94,7 +94,7 @@ To access swagger <http://localhost:8080/gbtdemo/swagger-ui/>
 # Adds openapi and swagger support
 ./mvnw quarkus:add-extension -Dextensions="quarkus-smallrye-openapi"
 # HTML templates using qute engine
-./mvnw quarkus:add-extension -Dextensions="quarkus-qute quarkus-resteasy-qute"
+./mvnw quarkus:add-extension -Dextensions="quarkus-qute,quarkus-resteasy-qute"
 # Creates rest clients. Used in developer service to get projects
 ./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client"
 # Adds fault tolerance (Retry policy, fallbacks and circuit breaker)
