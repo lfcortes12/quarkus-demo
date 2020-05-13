@@ -1,6 +1,9 @@
 package com.gbt.quarkus;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +17,9 @@ public class ProjectResource {
 
     Logger log = LoggerFactory.getLogger(ProjectResource.class);
 
+
+    @Timed(name = "getAllProjectsTimer", unit = MetricUnits.MILLISECONDS)
+    @Counted(name = "getAllProjectsCounter")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Project> getAllProjects() {
