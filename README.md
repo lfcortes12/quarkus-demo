@@ -201,6 +201,69 @@ kubectl create configmap developer-cm --from-file=application.properties
 
 ```
 
+### Deploying to GCP
+
+#### Installation
+
+Create a single cluster by using GCP Console or using with the GCP SDK following this guides <https://cloud.google.com/sdk/docs/downloads-apt-get>
+
+Option 1: Console
+
+Following this guide <https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster>
+
+Option 2: SDK
+
+```bash
+
+ gcloud container clusters create [cluster-name] --zone [zone]
+
+```
+
+#### Setting up kubectl
+
+Generate kubeconfig running the following command:
+
+```bash
+gcloud container clusters get-credentials cluster-name
+```
+
+To connect to GKP cluster:
+
+```bash
+gcloud container clusters get-credentials [cluster-name] --zone [zone] --project [project-name]
+```
+
+To change the context to minikube again use the next:
+
+```bash
+kubectl config use-context minikube
+```
+
+#### Service Deployment
+
+Once you are connected with your GCP cluster, use `./mvnw package -Dquarkus.kubernetes.deploy=true` command to deploy. In case that you expose the service, Quarkus generates a Ingress, that will not work properly in GKE, so adjust it like this:
+
+```yml
+apiVersion: "extensions/v1beta1"
+kind: "Ingress"
+metadata:
+  labels:
+    app.kubernetes.io/name: "developer"
+    app.kubernetes.io/version: "v3"
+  name: "developer"
+spec:
+  rules:
+  - host: ""
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: "developer"
+          servicePort: 8080
+```
+
+If that is your case, first generate the descriptor `./mvnw package`, modify it, and then apply it `kubectl apply -f target/kubernetes/kubernetes.yml`.
+
 ## Quarkus Websockets support
 
 In *demo-web-socket* project you can find an implementation using websockets. To use websockets, use the proper extension
